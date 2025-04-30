@@ -1,103 +1,148 @@
+'use client'
 import Image from "next/image";
-
+import { Brain, MessageSquareIcon, Earth, KeyRound, CakeIcon, ScrollIcon, Lightbulb, MoveRightIcon} from "lucide-react";
+import Banner from "@/app/banner.png";
+import Waitlist from "./waitlist";
+import { motion, useScroll, useTransform } from "motion/react";
+const features = [
+  {
+    index: 1,
+    icon: <MessageSquareIcon className="h-8 w-8" />,
+    title: "Reminders Inside WhatsApp",
+    description: "Stay in your workflow. No switching apps, no friction.",
+  },
+  {
+    index: 2,
+    icon: <Brain className="h-8 w-8" />,
+    title: "Simple to Use",
+    description: "Interact naturally with a chatbot, just like talking to a friend.",
+  },
+  {
+    index: 3,
+    icon: <Earth className="h-8 w-8" />,
+    title: "Built for Real Life",
+    description: "Designed by people who live in WhatsApp and needed a practical solution.",
+  },
+  {
+    index: 4,
+    icon: <KeyRound className="h-8 w-8" />,
+    title: "Privacy First",
+    description: "Your data is yours. We don't store your conversations.",
+  },
+  {
+    index: 5,
+    icon: <Brain className="h-8 w-8" />,
+    title: "Boost Reliability",
+    description: "Improve your follow-through on personal and professional communication.",
+  },
+];
+const story = [
+  {
+    index:1,
+    icon:<ScrollIcon className="h-16 w-16 text-green-400"/>,
+    text:<p className="">Like you, we struggled with the volume of WhatsApp messages.</p>
+  },
+  {
+    index:2,
+    icon:<CakeIcon className="h-16 w-16 text-green-400"/>,
+    text:<p className="">A missed follow-up on Vaibhav's birthday sparked the idea.</p>
+  },
+  {
+    index:3,
+    icon:<Lightbulb className="h-16 w-16 text-green-400"/>,
+    text:<p className="">So <a href="https://x.com/vaibhav_gup01">Vaibhav</a> and <a href="https://x.com/vineetbambah">Vineet</a>   teamed up to build the simple tool we all desperately need.</p>
+  }
+]
 export default function Home() {
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  const yPosition = useTransform(scrollYProgress, [0, 0.3], [0, -100]);
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+    
+    <div className="text-black">
+      <canvas id="noiseCanvas" className="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+      <nav className="fixed left-1/2 transform -translate-x-1/2 w-3/4 top-1 p-4 rounded-sm backdrop-blur-lg z-10">
+      <div className="flex items-center justify-between">
+        <h1 className="font-bold text-4xl"> circl</h1>
+        <Waitlist />
+      </div>
+      </nav>
+      <main id="hero" className="flex min-h-screen flex-col items-center justify-between p-24">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col items-center justify-center"
+        >
+          <Image
+            src={Banner.src}
+            alt="Banner"
+            width={1920}
+            height={1080}
+            className="mt-8 opacity-80 scale-80 rounded-lg shadow-lg"
+            priority
+          />
+          <motion.h1
+            style={{ opacity, y: yPosition }}
+            className="text-4xl md:text-7xl w-1/2 text-center absolute font-bold text-white"
+          > Remember WhatsApp Chats That Matter
+          </motion.h1>
+          <motion.h2 className="text-2xl text-white mt-64 w-2/4 absolute
+         font-semibold text-center"
+            style={{ opacity, y: yPosition }}>
+            Never let a crucial follow-up get buried in the endless scroll. Get reminders directly within your WhatsApp conversations.
+          </motion.h2>
+          <motion.div className="absolute mt-96">
+            <Waitlist />
+          </motion.div>
+        </motion.div> 
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  
+      {/* <section id="features" className="bg-white min-h-screen text-white py-24">
+        <motion.h1
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-4xl md:text-7xl w-1/2 text-center mx-auto font-bold text-black">
+          Why you need this?
+        </motion.h1>
+        <div className="grid my-20 grid-cols-3 mx-20 w-full gap-4 px-4 md:px-24">
+        {features.map((feature, index) => (
+          <div
+            key={index}
+            className="flex hover:bg-green-100/10 flex-col items-center justify-center shadow-black/10 shadow-sm hover:shadow-lg duration-100 p-4 md:flex-row md:space-x-8"
+          >
+            <div className="flex items-center justify-center w-16 h-16 bg-black space-x-1 rounded-full">
+              {feature.icon}
+            </div>
+            <div className="flex flex-col items-start justify-center p-4">
+              <h3 className="text-2xl font-bold text-black">{feature.title}</h3>
+              <p className="mt-2 text-lg text-gray-700">{feature.description}</p>
+            </div>
+          </div>
+        ))}
+        </div>
+      </section> */}
+      
+      <section id="story" className="flex flex-col justify-center items-center min-h-screen w-screen">
+        <h1 className="text-6xl font-bold text-center mb-20">Built out of necessity</h1>
+        <div id="storyTiles" className="space-x-2 w-3/4 p-2 grid grid-cols-5">
+          {story.map((tile,index)=>(
+             <>
+             <div className="p-12 w-100 shadow-sm bg-green-50 hover:shadow-md duration-150">
+               <div className="mb-20">{tile.icon}</div>
+               <h1 className="text-2xl">{tile.text}</h1>
+             </div>
+         
+             {index !==2 && (
+                 <MoveRightIcon className="h-20 w-20 text-green-500 mt-20 m-auto"/>
+             )}
+           </>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
