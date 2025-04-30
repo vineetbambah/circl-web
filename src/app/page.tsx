@@ -1,56 +1,57 @@
 'use client'
 import Image from "next/image";
-import { Brain, MessageSquareIcon, Earth, KeyRound, CakeIcon, ScrollIcon, Lightbulb, MoveRightIcon} from "lucide-react";
+import React from "react";
+import {CakeIcon, ScrollIcon, Lightbulb, MoveRightIcon} from "lucide-react";
 import Banner from "@/app/banner.png";
 import Waitlist from "./waitlist";
 import { motion, useScroll, useTransform } from "motion/react";
-const features = [
-  {
-    index: 1,
-    icon: <MessageSquareIcon className="h-8 w-8" />,
-    title: "Reminders Inside WhatsApp",
-    description: "Stay in your workflow. No switching apps, no friction.",
-  },
-  {
-    index: 2,
-    icon: <Brain className="h-8 w-8" />,
-    title: "Simple to Use",
-    description: "Interact naturally with a chatbot, just like talking to a friend.",
-  },
-  {
-    index: 3,
-    icon: <Earth className="h-8 w-8" />,
-    title: "Built for Real Life",
-    description: "Designed by people who live in WhatsApp and needed a practical solution.",
-  },
-  {
-    index: 4,
-    icon: <KeyRound className="h-8 w-8" />,
-    title: "Privacy First",
-    description: "Your data is yours. We don't store your conversations.",
-  },
-  {
-    index: 5,
-    icon: <Brain className="h-8 w-8" />,
-    title: "Boost Reliability",
-    description: "Improve your follow-through on personal and professional communication.",
-  },
-];
+// const features = [
+//   {
+//     index: 1,
+//     icon: <MessageSquareIcon className="h-8 w-8" />,
+//     title: "Reminders Inside WhatsApp",
+//     description: "Stay in your workflow. No switching apps, no friction.",
+//   },
+//   {
+//     index: 2,
+//     icon: <Brain className="h-8 w-8" />,
+//     title: "Simple to Use",
+//     description: "Interact naturally with a chatbot, just like talking to a friend.",
+//   },
+//   {
+//     index: 3,
+//     icon: <Earth className="h-8 w-8" />,
+//     title: "Built for Real Life",
+//     description: "Designed by people who live in WhatsApp and needed a practical solution.",
+//   },
+//   {
+//     index: 4,
+//     icon: <KeyRound className="h-8 w-8" />,
+//     title: "Privacy First",
+//     description: "Your data is yours. We don't store your conversations.",
+//   },
+//   {
+//     index: 5,
+//     icon: <Brain className="h-8 w-8" />,
+//     title: "Boost Reliability",
+//     description: "Improve your follow-through on personal and professional communication.",
+//   },
+// ];
 const story = [
   {
     index:1,
     icon:<ScrollIcon className="h-16 w-16 text-green-400"/>,
-    text:<p className="">Like you, we struggled with the volume of WhatsApp messages.</p>
+    text:<p className="text-2xl">Like you, we struggled with the volume of WhatsApp messages.</p>
   },
   {
     index:2,
     icon:<CakeIcon className="h-16 w-16 text-green-400"/>,
-    text:<p className="">A missed follow-up on Vaibhav's birthday sparked the idea.</p>
+    text:<p className="text-2xl">A missed follow-up on Vaibhav&apos;s birthday sparked the idea.</p>
   },
   {
     index:3,
     icon:<Lightbulb className="h-16 w-16 text-green-400"/>,
-    text:<p className="">So <a href="https://x.com/vaibhav_gup01">Vaibhav</a> and <a href="https://x.com/vineetbambah">Vineet</a>   teamed up to build the simple tool we all desperately need.</p>
+    text:<p className="text-2xl">So <a href="https://x.com/vaibhav_gup01 " className="hover:underline">Vaibhav</a> and <a href="https://x.com/vineetbambah" className="hover:underline">Vineet</a>   teamed up to build the simple tool we all desperately need.</p>
   }
 ]
 export default function Home() {
@@ -130,16 +131,16 @@ export default function Home() {
         <h1 className="text-6xl font-bold text-center mb-20">Built out of necessity</h1>
         <div id="storyTiles" className="space-x-2 w-3/4 p-2 grid grid-cols-5">
           {story.map((tile,index)=>(
-             <>
+             <React.Fragment key={index}>
              <div className="p-12 w-100 shadow-sm bg-green-50 hover:shadow-md duration-150">
                <div className="mb-20">{tile.icon}</div>
-               <h1 className="text-2xl">{tile.text}</h1>
+               <h1 className="">{tile.text}</h1>
              </div>
          
              {index !==2 && (
-                 <MoveRightIcon className="h-20 w-20 text-green-500 mt-20 m-auto"/>
+                 <MoveRightIcon className="h-20 w-20 text-green-500 mt-20 ml-40"/>
              )}
-           </>
+           </React.Fragment>
           ))}
         </div>
       </section>
