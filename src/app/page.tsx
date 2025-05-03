@@ -1,5 +1,5 @@
 'use client'
-import { Maitree, Macondo, Overpass_Mono, Oleo_Script, Courier_Prime } from "next/font/google";
+import { Maitree, Macondo, Overpass_Mono, Oleo_Script} from "next/font/google";
 import Image from "next/image";
 const maitree = Maitree({
   subsets: ["latin"],

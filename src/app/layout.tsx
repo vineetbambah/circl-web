@@ -1,23 +1,7 @@
 import type { Metadata } from "next";
-import { Maitree, Macondo,Overpass_Mono,Oleo_Script,Courier_Prime} from "next/font/google";
+import {Courier_Prime} from "next/font/google";
 import "./globals.css";
 
-
-const macondo = Macondo({
-  subsets: ["latin"],
-  variable: "--font-macondo",
-  weight: ["400"],
-});
-const overpass_mono = Overpass_Mono({
-  subsets: ["latin"],
-  variable: "--font-overpass-mono",
-  weight: ["400", "500", "600", "700"],
-});
-const oleo_script = Oleo_Script({
-  subsets: ["latin"],
-  variable: "--font-oleo-script",
-  weight: ["400"],
-});
 const courier_prime = Courier_Prime({
   subsets: ["latin"],
   variable: "--font-courier-prime",
