@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import {Courier_Prime} from "next/font/google";
+import { Courier_Prime } from "next/font/google";
 import "./globals.css";
 
 const courier_prime = Courier_Prime({
@@ -22,7 +22,7 @@ export default function RootLayout({
       <body
         className={`${courier_prime.className} antialiased`}
       >
-        {children}
+            {children}
       </body>
     </html>
   );
