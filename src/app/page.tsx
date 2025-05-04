@@ -26,7 +26,7 @@ const oleo_script = Oleo_Script({
 export default function Home() {
   return (
     <>
-      <div className=" flex flex-col items-center bg-[#212121] max-h-fit min-h-screen z-10 bg-[url('/banner.png')] bg-blend-overlay  md:bg-cover md:bg-center bg-fixed">
+      <div className=" flex flex-col items-center bg-[#212121] max-h-fit min-h-screen z-10 bg-[url('/banner.png')] py-12 bg-blend-overlay  md:bg-cover md:bg-center bg-fixed">
         <h1 className={`text-4xl text-white w-2/6 text-center mt-24 ${maitree.className} `}>stop losing important messages in <span className="font-medium text-[#25D366]">WhatsApp</span> <span className={macondo.className}>c</span><span className={oleo_script.className}>h</span><span className={overpass_mono.className}>a</span><span className={macondo.className}>o</span><span className={macondo.className}>s</span></h1>
         <div className="flex flex-col items-center border-1 p-2 rounded-lg border-[#24E030] mt-10">
           <p className={`md:text-xl text-[#24E030] text-center`}> launching sooner than you expect</p>
